@@ -28,15 +28,21 @@ file_types = {
 }
 # Makes program work, coded this 5 minutes ago and have no idea what's going on.
 def recurse():
+    # So it doesn't recurst infinitely, remove/comment to sort a large amount.
     sleep(7)
     try:
         for i in file_types:
+            # Checks if file ends with extension
             if os.listdir(downloads)[0].endswith(i):
-                print(os.listdir(downloads)[0]+ " ends with "+i)
+                # Uncomment below for debugging
+                #print(os.listdir(downloads)[0]+ " ends with "+i)
+                # Moves file from downloads/filename.ext, to directory/filetype/filename.ext
                 os.replace(downloads+os.listdir(downloads)[0], move_to+file_types[i]+"/"+os.listdir(downloads)[0])
                 return recurse()
+        # If file has no matching extensions, move to other.
         os.replace(downloads+os.listdir(downloads)[0], move_to+"other/"+os.listdir(downloads)[0])
         return recurse()
+    # Temporary fix, will add if statement to check for files in dir
     except IndexError:
         return recurse()    
         
