@@ -6,5 +6,4 @@ Because it's an application that runs in the background, I chose the sleep time 
 The path of which the files will get sent to will be have to be modified.
 
 # To do
-- Makes folder if already not existing.
-- Add error handling if file is opened somewhere else.
+- Open to suggestions
