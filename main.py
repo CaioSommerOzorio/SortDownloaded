@@ -1,11 +1,11 @@
 import os
-import sys
+import uuid
 from time import sleep
 
 # CHANGE DIRECTORIES
 
-downloads = "C:/Users/farof/Downloads/"
-move_to = "C:/Users/farof/Onedrive/Desktop/Downloaded/"
+downloads = "C:/Default/download/directory/"
+move_to = "C:/Move/to/folder/"
 
 file_types = {
     ".mp4": "Videos", 
@@ -37,12 +37,11 @@ file_types = {
     ".cpp": "Scripts"
 }
 
+def make_name_unique(downloaded_file, num):
+    return str(num)+downloaded_file
+
 def main(num: int):
     # Checks if file is still being downloaded
-    if os.listdir(downloads)[0].endswith(".crdownload"):
-        print("File has not finished downloading")
-        sleep(5)
-        return main(num+1)
     try:
         # Declare downloaded file
         downloaded_file = os.listdir(downloads)[0+num]
@@ -50,6 +49,10 @@ def main(num: int):
         # If downloads folder is empty
         sleep(5)
         return main(0)
+    if os.listdir(downloads)[0].endswith(".crdownload"):
+        print(f"[{downloaded_file}] has not finished downloading")
+        sleep(5)
+        return main(num+1)
     for i in file_types:
         if downloaded_file.endswith(i):
             try:
@@ -57,17 +60,21 @@ def main(num: int):
                     try:
                         os.replace(downloads+downloaded_file, move_to+file_types[i]+"/"+downloaded_file)
                     except PermissionError:
-                        print("File opened somewhere else.")
+                        print(f"[{downloaded_file}] opened somewhere else.")
                         sleep(5)
-                        return main(+1)
+                        return main(num+1)
                     print(f"Moved {downloaded_file} to {move_to+file_types[i]}/")
                     sleep(5)
                     return main()
                 else:
                     # If there's already a file with the same name
                     print(f"'{downloaded_file}' already exists in '{move_to+file_types[i]}'")
+                    print("Making new name...")
+                    new_name = downloaded_file.join(uuid.uuid4().hex)
+                    print(f"[{downloaded_file}] has been renamed to [{new_name}]")
+                    downloaded_file.join(uuid.uuid4().hex)
                     sleep(5)
-                    return main(num+1)
+                    return main(0)
             except FileNotFoundError:
                 print(f"{file_types[i]} folder does not exist, making directory.")
                 os.mkdir(move_to+file_types[i])
@@ -76,7 +83,7 @@ def main(num: int):
                     try:
                         os.replace(downloads+downloaded_file, move_to+file_types[i]+"/"+downloaded_file)
                     except PermissionError:
-                        print("File opened somewhere else.")
+                        print(f"[{downloaded_file}] opened somewhere else.")
                         sleep(5)
                         return main(num+1)
                     print(f"Moved [{downloaded_file}] to {move_to+file_types[i]}/")
@@ -85,6 +92,8 @@ def main(num: int):
                 else:
                     # If there's already a file with the same name
                     print(f"[{downloaded_file}] already exists in '{move_to+file_types[i]}'")
+                    
+                    print("Renamed to ")
                     return main(num+1)
     try:
         os.replace(downloads+downloaded_file, move_to+"other/"+downloaded_file)
