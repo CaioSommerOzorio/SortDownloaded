@@ -7,3 +7,6 @@ The path of which the files will get sent to will be have to be modified.
 
 # To do
 - Open to suggestions
+
+# Requirements
+`pip3 install colorama`
