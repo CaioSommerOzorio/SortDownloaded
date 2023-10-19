@@ -5,10 +5,10 @@ from time import sleep
 init()
 # CHANGE DIRECTORIES
 
-downloads = "C:/Default/download/directory/"
-move_to = "C:/Move/to/folder/"
+downloads = "C:/Users/farof/Downloads/"
+move_to = "C:/Users/farof/Onedrive/Desktop/Downloaded/"
 
-folders = ["Videos", "Images", "Web", "Audio files", "Executables", "Zip files", "Text files", "Scripts"]
+folders = ["Videos", "Images", "Web", "Audio files", "Executables", "Zip files", "Text files", "Scripts", "Docs"]
 
 file_types = {
     ".mp4": "Videos", 
@@ -30,6 +30,9 @@ file_types = {
     ".wav": "Audio files",
     ".ogg": "Audio files",
     ".exe": "Executables",
+    ".app": "Executables",
+    ".bat": "Executables",
+    ".cmd": "Executables",
     ".zip": "Zip files",
     ".txt": "Text files",
     ".py": "Scripts",
@@ -37,7 +40,12 @@ file_types = {
     ".js": "Scripts",
     ".java": "Scripts",
     ".c": "Scripts",
-    ".cpp": "Scripts"
+    ".cpp": "Scripts",
+    ".docx": "Docs",
+    ".pptx": "Docs",
+    ".xlsx": "Docs",
+    ".one": "Docs"
+    
 }
 
 def make_dirs():
