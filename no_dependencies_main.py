@@ -1,4 +1,3 @@
-# Only built in libraries
 import os
 import uuid
 from time import sleep
@@ -6,7 +5,7 @@ from time import sleep
 # CHANGE DIRECTORIES
 
 downloads = "C:/default/download/directory/"
-move_to = "C:/move/to"
+move_to = "C:/move/to/"
 
 folders = ["Videos", "Images", "Web", "Audio files", "Executables", "Zip files", "Text files", "Scripts", "Docs"]
 
@@ -134,11 +133,11 @@ def main(num: int, messages_printed: set = set()):
             return main(num+1, messages_printed)
     
     except KeyboardInterrupt:
-        print(Fore.RED + "\nExiting...")
+        print("\nExiting...")
 
 make_dirs()
 
 try:
     main(0)
 except KeyboardInterrupt:
-    print(Fore.RED + "\nExiting...")
+    print("\nExiting...")
