@@ -57,6 +57,7 @@ def make_dirs():
             print(f"{Fore.BLUE}[{i}]{Fore.GREEN} directory has been made.\n")
     print("Directories are up to date.\n")
 
+
 def main(num: int, messages_printed: set = set()):
     try:
         # List all files in the downloads directory
@@ -72,7 +73,6 @@ def main(num: int, messages_printed: set = set()):
         
         # Remove the flag from the set when files are found
         messages_printed.discard("empty_downloads")
-
         # Iterate through the downloaded files
         for downloaded_file in downloaded_files:
             for i in file_types:
@@ -113,7 +113,7 @@ def main(num: int, messages_printed: set = set()):
                             return main(0, messages_printed)
                         else:
                             # If there's already a file with the same name
-                            print(f"{Fore.Blue}[{downloaded_file}] {Fore.RED}already exists in {Fore.BLUE}[{move_to+file_types[i]}]\n")
+                            print(f"{Fore.BLUE}[{downloaded_file}] {Fore.RED}already exists in {Fore.BLUE}[{move_to+file_types[i]}]\n")
                             print(f"Renamed to {new_name}\n")
                             return main(num+1, messages_printed)
         try:
@@ -134,11 +134,11 @@ def main(num: int, messages_printed: set = set()):
             return main(num+1, messages_printed)
     
     except KeyboardInterrupt:
-        print(Fore.RED + "\nExiting...")
+        print(f"{Fore.RED}\nExiting...")
 
 make_dirs()
 
 try:
     main(0)
 except KeyboardInterrupt:
-    print(Fore.RED + "\nExiting...")
+    print(f"{Fore.RED}\nExiting...")
